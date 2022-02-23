@@ -2,7 +2,8 @@ package main
 
 import (
     "log"
-    "mux-mongo-api/configs" //add this
+    "mux-mongo-api/configs" 
+    "mux-mongo-api/routes" //add this
     "net/http"
 
     "github.com/gorilla/mux"
@@ -13,6 +14,9 @@ func main() {
 
     //run database
     configs.ConnectDB()
+
+    //routes
+    routes.UserRoute(router) //add this
 
     log.Fatal(http.ListenAndServe(":6000", router))
 }
