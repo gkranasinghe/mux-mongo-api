@@ -139,3 +139,33 @@ func EditAUser() http.HandlerFunc {
         json.NewEncoder(rw).Encode(response)
     }
 }
+
+func DeleteAUser() http.HandlerFunc {
+    return func(rw http.ResponseWriter, r *http.Request) {
+        ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+        params := mux.Vars(r)
+        userId := params["userId"]
+        defer cancel()
+        objId, _ := primitive.ObjectIDFromHex(userId)
+
+        result, err := userCollection.DeleteOne(ctx, bson.M{"id": objId})
+
+        if err != nil {
+            rw.WriteHeader(http.StatusInternalServerError)
+            response := responses.UserResponse{Status: http.StatusInternalServerError, Message: "error", Data: map[string]interface{}{"data": err.Error()}}
+            json.NewEncoder(rw).Encode(response)
+            return
+        }
+
+        if result.DeletedCount < 1 {
+            rw.WriteHeader(http.StatusNotFound)
+            response := responses.UserResponse{Status: http.StatusNotFound, Message: "error", Data: map[string]interface{}{"data": "User with specified ID not found!"}}
+            json.NewEncoder(rw).Encode(response)
+            return
+        }
+
+        rw.WriteHeader(http.StatusOK)
+        response := responses.UserResponse{Status: http.StatusOK, Message: "success", Data: map[string]interface{}{"data": "User successfully deleted!"}}
+        json.NewEncoder(rw).Encode(response)
+    }
+}
