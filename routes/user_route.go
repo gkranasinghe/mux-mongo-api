@@ -1,7 +1,10 @@
 package routes
 
-import "github.com/gorilla/mux"
+import (
+    "mux-mongo-api/controllers" //add this
+    "github.com/gorilla/mux"
+)
 
-func UserRoute(router *mux.Router)  {
-    //All routes related to users comes here
+func UserRoute(router *mux.Router) {
+    router.HandleFunc("/user", controllers.CreateUser()).Methods("POST") //add this
 }
