@@ -37,4 +37,4 @@ jobs:
           context: .
           file: ./src/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/muxmongoapi:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/muxmongoapi:latest
