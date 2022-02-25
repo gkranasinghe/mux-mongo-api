@@ -7,9 +7,9 @@ import (
 
 func TestHello(t *testing.T) {
 
- want := "Connected to MongoDB"
+ want := "MongoDB"
 
- got := "Connected to MongoDB"
+ got := "MongoDB"
 
  if want != got {
   t.Fatalf("want %s, got %s\n", want, got)
