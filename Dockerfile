@@ -1,6 +1,9 @@
 FROM golang:1.16.4-buster AS builder
 
 # ARG VERSION=dev
+# you could give this a default value as well
+ARG MONGOURI_ARG="mongodb://root:vrWKB7Pxav@192.168.8.244:27017/?authSource=admin&readPreference=primary&ssl=false" 
+ENV MONGOURI=$MONGOURI_ARG
 
 WORKDIR /go/src/app
 COPY src/go.mod .
