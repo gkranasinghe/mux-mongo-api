@@ -17,12 +17,12 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-      # -
-      #   name: Docker meta
-      #   id: meta
-      #   uses: docker/metadata-action@v3
-      #   with:
-      #     images: name/app
+      -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: gkranasinghe/muxmongoapi
       -
         name: Login to DockerHub
         if: github.event_name != 'pull_request'
