@@ -1,0 +1,10 @@
+project: default
+source:
+  repoURL: 'https://github.com/gkranasinghe/mux-mongo-api/'
+  path: manifests
+  targetRevision: HEAD
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: default
+syncPolicy:
+  automated: {}
