@@ -1,9 +1,9 @@
 package configs
 
 import (
-    // "log"
-    "os"
-    // "github.com/joho/godotenv"
+	"fmt"
+	"os"
+	// "github.com/joho/godotenv"
 )
 
 func EnvMongoURI() string {
@@ -11,6 +11,6 @@ func EnvMongoURI() string {
     // if err != nil {
     //     log.Fatal("Error loading .env file")
     // }
-  
+    fmt.Printf("MONGOURI is : %s, \n", os.Getenv("MONGOURI"))
     return os.Getenv("MONGOURI")
 }
